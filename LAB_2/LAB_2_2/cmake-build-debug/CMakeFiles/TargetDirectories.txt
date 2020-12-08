@@ -1,0 +1,4 @@
+/home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_2/cmake-build-debug/CMakeFiles/LAB_2_2_comparator.dir
+/home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_2/cmake-build-debug/CMakeFiles/LAB_2_2.dir

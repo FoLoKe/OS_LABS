@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/LAB_2_2_comparator.dir/child_main.c.o  -o LAB_2_2_comparator 

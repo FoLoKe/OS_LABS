@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/FoLoKe/CLionProjects/untitled/main.c
+stdio.h
+-
+unistd.h
+-
+sys/wait.h
+-
+sys/time.h
+-
+stdlib.h
+-
+time.h
+-
+
