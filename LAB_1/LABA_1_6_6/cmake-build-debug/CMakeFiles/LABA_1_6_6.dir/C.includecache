@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/FoLoKe/CLionProjects/LABA_1_6_6/main.c
+stdio.h
+-
+sys/stat.h
+-
+dirent.h
+-
+accctrl.h
+-
+
