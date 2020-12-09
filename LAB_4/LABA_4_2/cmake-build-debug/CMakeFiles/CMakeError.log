@@ -1,0 +1,43 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_2/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_1bebd/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1bebd.dir/build.make CMakeFiles/cmTC_1bebd.dir/build
+gmake[1]: Вход в каталог `/home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_2/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1bebd.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -std=gnu99 -o CMakeFiles/cmTC_1bebd.dir/src.c.o   -c /home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_2/cmake-build-debug/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_1bebd
+"/home/FoLoKe/Рабочий стол/clion-2020.3/bin/cmake/linux/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_1bebd.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_1bebd.dir/src.c.o  -o cmTC_1bebd 
+CMakeFiles/cmTC_1bebd.dir/src.c.o: In function `main':
+src.c:(.text+0x2d): undefined reference to `pthread_create'
+src.c:(.text+0x39): undefined reference to `pthread_detach'
+src.c:(.text+0x45): undefined reference to `pthread_cancel'
+src.c:(.text+0x56): undefined reference to `pthread_join'
+src.c:(.text+0x6a): undefined reference to `pthread_atfork'
+collect2: ошибка: выполнение ld завершилось с кодом возврата 1
+gmake[1]: *** [cmTC_1bebd] Ошибка 1
+gmake[1]: Выход из каталога `/home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_2/cmake-build-debug/CMakeFiles/CMakeTmp'
+gmake: *** [cmTC_1bebd/fast] Ошибка 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
