@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <dirent.h>
-#include <accctrl.h>
+#include <stdlib.h>
 
 void readCatalog(char* path, long min, long max);
 
@@ -27,9 +27,7 @@ void readCatalog(char* path, long min, long max) {
                 continue;
             }
             char newPath[255] = "";//""
-            strcat(newPath, path);
-            strcat(newPath, "\\");
-            strcat(newPath, dirent1 -> d_name);
+            sprintf(newPath, "%s/%s", path, dirent1 -> d_name);
 
             readCatalog(newPath, min, max);
         }

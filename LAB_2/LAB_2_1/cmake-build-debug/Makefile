@@ -68,24 +68,13 @@ RM = "/home/FoLoKe/Рабочий стол/clion-2020.3/bin/cmake/linux/bin/cmak
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/FoLoKe/CLionProjects/untitled
+CMAKE_SOURCE_DIR = /home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/FoLoKe/CLionProjects/untitled/cmake-build-debug
+CMAKE_BINARY_DIR = /home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_1/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"/home/FoLoKe/Рабочий стол/clion-2020.3/bin/cmake/linux/bin/cmake" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -98,11 +87,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	"/home/FoLoKe/Рабочий стол/clion-2020.3/bin/cmake/linux/bin/cmake" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/FoLoKe/CLionProjects/untitled/cmake-build-debug/CMakeFiles /home/FoLoKe/CLionProjects/untitled/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_1/cmake-build-debug/CMakeFiles /home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_1/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/FoLoKe/CLionProjects/untitled/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/FoLoKe/CLionProjects/OS_LABS/LAB_2/LAB_2_1/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -131,17 +131,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named untitled
+# Target rules for targets named LAB_2_1
 
 # Build rule for target.
-untitled: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 untitled
-.PHONY : untitled
+LAB_2_1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 LAB_2_1
+.PHONY : LAB_2_1
 
 # fast build rule for target.
-untitled/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
-.PHONY : untitled/fast
+LAB_2_1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LAB_2_1.dir/build.make CMakeFiles/LAB_2_1.dir/build
+.PHONY : LAB_2_1/fast
 
 main.o: main.c.o
 
@@ -149,7 +149,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LAB_2_1.dir/build.make CMakeFiles/LAB_2_1.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -158,7 +158,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LAB_2_1.dir/build.make CMakeFiles/LAB_2_1.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -167,7 +167,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/LAB_2_1.dir/build.make CMakeFiles/LAB_2_1.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -178,7 +178,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... untitled"
+	@echo "... LAB_2_1"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

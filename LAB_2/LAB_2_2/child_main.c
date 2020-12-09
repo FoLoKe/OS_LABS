@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
-    printf("thread started %s %s\n", argv[0], argv[1]);
+    printf("thread started %s %s %i\n", argv[0], argv[1], getpid());
     if(argc >= 2) {
         FILE *file1 = fopen(argv[0], "r");
         FILE *file2 = fopen(argv[1], "r");

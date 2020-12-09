@@ -1,9 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/LABA_1_4.dir/main.c.obj"
-  "LABA_1_4.exe"
-  "LABA_1_4.exe.manifest"
+  "CMakeFiles/LABA_1_4.dir/main.c.o"
+  "LABA_1_4"
   "LABA_1_4.pdb"
-  "libLABA_1_4.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

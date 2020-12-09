@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <unistd.h>
 
 int main(int argc, char *argv[], char *envp[]) {
     if(argc >= 2) {

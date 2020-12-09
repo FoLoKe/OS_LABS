@@ -7,8 +7,8 @@ int main(int argc, char *argv[], char *envp[]) {
         FILE *file = fopen(argv[1], "w");
         if (file) {
             char a;
-            //Ctrl + D to stop writing
-            while((int)(a = (char)getchar()) != 4) {
+            //Ctrl + F to stop writing
+            while((int)(a = (char)getchar()) != 6) {
                 if (fputc(a, file) == EOF) {
                     printf("write error");
                     return 1;

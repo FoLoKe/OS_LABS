@@ -25,7 +25,7 @@ int main(int argc, char *argv[], char *envp[]) {
                 if(*(dirent1->d_name) == '.') {
                     continue;
                 }
-                char newPath1[255] = "";//""
+                char newPath1[255] = "";
                 strcat(newPath1, argv[1]);
                 strcat(newPath1, "/");
                 strcat(newPath1, dirent1 -> d_name);
@@ -44,26 +44,26 @@ int main(int argc, char *argv[], char *envp[]) {
                     while (threadsCount >= maxThreads) {
 
                     }
-
+                    threadsCount++;
                     startThread(newPath1, newPath2);
                 }
             }
 
             if(closedir(dir1) == -1) {
-                printf("close error");
+                printf("close error\n");
             }
             if(closedir(dir2) == -1) {
-                printf("close error");
+                printf("close error\n");
             }
 
             while (threadsCount>0) {
 
             }
         } else {
-            printf("not a dirs");
+            printf("not a dirs\n");
         }
     } else {
-        printf("too few arguments");
+        printf("too few arguments\n");
     }
     return 0;
 }
@@ -71,15 +71,14 @@ int main(int argc, char *argv[], char *envp[]) {
 void sig_child(int signal) {
     pid_t pid;
     int status;
-    printf("terminated, threads count: %i\n", threadsCount - 1);
+    printf("terminated, threads count: %i\n", threadsCount-1);
     threadsCount--;
+
 }
 
 void startThread(char* path1, char* path2) {
-    char temp[20] = " ";
-    printf("thread %s %s", path1, path2);
     signal(SIGCHLD, sig_child);
-    threadsCount++;
+
     pid_t pid = fork();
 
     if (pid == 0) {
@@ -88,8 +87,8 @@ void startThread(char* path1, char* path2) {
             printf("%s", errorbuf);
         }
     } else if (pid > 0) {
-        printf(" created %s \n", temp);
+
     } else {
-        printf("something went wrong i can feel it");
+        printf("something went wrong i can feel it\n");
     }
 }
