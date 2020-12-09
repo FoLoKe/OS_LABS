@@ -1,0 +1,16 @@
+"/home/FoLoKe/Рабочий стол/clion-2020.3/bin/cmake/linux/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_2
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE  
+CMake Error at CMakeLists.txt:10 (target_link_libraries):
+  Cannot specify link libraries for target "LABA_4_1" which is not built by
+  this project.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_2/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_2/cmake-build-debug/CMakeFiles/CMakeError.log".

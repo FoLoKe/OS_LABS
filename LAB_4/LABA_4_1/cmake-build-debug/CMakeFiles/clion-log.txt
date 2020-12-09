@@ -1,0 +1,4 @@
+"/home/FoLoKe/Рабочий стол/clion-2020.3/bin/cmake/linux/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_1
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_1/cmake-build-debug
