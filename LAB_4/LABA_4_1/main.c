@@ -5,7 +5,8 @@
 #include <semaphore.h>
 
 void dangerous_function(void* arg);
-void* thread_func(void *arg);
+void* thread_func1(void *arg);
+void* thread_func2(void *arg);
 int number;
 pthread_mutex_t mutex;
 pthread_cond_t cond;
@@ -35,13 +36,13 @@ int main(int argc, char *argv[]) {
     int threads_numadd2 = 2;
 
     pthread_t thread1;
-    res = pthread_create(&thread1, NULL, thread_func, &threads_numadd1);
+    res = pthread_create(&thread1, NULL, thread_func1, &threads_numadd1);
     if (res != 0) {
         printf("error creating thread\n");
     }
 
     pthread_t thread2;
-    res = pthread_create(&thread2, NULL, thread_func, &threads_numadd2);
+    res = pthread_create(&thread2, NULL, thread_func2, &threads_numadd2);
     if (res != 0) {
         printf("error creating thread\n");
     }
@@ -65,31 +66,62 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-void* thread_func(void *arg) {
+void* thread_func1(void *arg) {
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
-    if(sync_type == 1) {
+    if (sync_type == 1) {
         pthread_mutex_lock(&mutex);
-    } else if (sync_type == 2)  {
+    } else if (sync_type == 2) {
         sem_wait(&semaphore);
     } else if (sync_type == 3) {
-        //pthread_mutex_lock(&mutex);
-        while(condition > 0) {
+        pthread_mutex_lock(&mutex);
+        while (condition) {
             pthread_cond_wait(&cond, &mutex);
         }
-        condition = 1;
     }
 
     dangerous_function(arg);
 
-    if(sync_type == 1) {
+    if (sync_type == 1) {
+        pthread_mutex_unlock(&mutex);
+    } else if (sync_type == 2) {
+        sem_post(&semaphore);
+    } else if (sync_type == 3) {
+        condition = 1;
+        pthread_cond_signal(&cond);
+        pthread_mutex_unlock(&mutex);
+    }
+    usleep((int)(10000.0 * rand()/RAND_MAX));
+
+    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+    pthread_testcancel();
+}
+
+void* thread_func2(void *arg) {
+    pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
+    if (sync_type == 1) {
+        pthread_mutex_lock(&mutex);
+    } else if (sync_type == 2) {
+        sem_wait(&semaphore);
+    } else if (sync_type == 3) {
+        pthread_mutex_lock(&mutex);
+        while (!condition) {
+            pthread_cond_wait(&cond, &mutex);
+        }
+    }
+
+    dangerous_function(arg);
+
+    if (sync_type == 1) {
         pthread_mutex_unlock(&mutex);
     } else if (sync_type == 2) {
         sem_post(&semaphore);
     } else if (sync_type == 3) {
         condition = 0;
         pthread_cond_signal(&cond);
-        //pthread_mutex_unlock(&mutex);
+        pthread_mutex_unlock(&mutex);
     }
+    usleep((int)(10000.0 * rand()/RAND_MAX));
+
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
     pthread_testcancel();
 }

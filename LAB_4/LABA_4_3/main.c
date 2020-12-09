@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <semaphore.h>
+#include <errno.h>
+#include <string.h>
 
 #define ITERATIONS 25
 
@@ -11,25 +13,26 @@ void* thread_func1(void *arg);
 void* thread_func2(void *arg);
 int number;
 pthread_mutex_t mutex;
-pthread_cond_t cond;
+pthread_cond_t cond=PTHREAD_COND_INITIALIZER;
 int condition = 0;
 sem_t semaphore;
 int sync_type = 0;
 
+char *fileName;
+
 int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
 
-    if(argc >= 2) {
+    if (argc >= 3) {
         sync_type = atoi(argv[1]);
-        if(sync_type == 1) {
+        fileName = argv[2];
+        if (sync_type == 1) {
             pthread_mutex_init(&mutex, NULL);
         } else if (sync_type == 2) {
             sem_init(&semaphore, 0, 0);
             sem_post(&semaphore);
         } else if (sync_type == 3) {
             pthread_mutex_init(&mutex, NULL);
-            pthread_cond_signal(&cond);
-
         }
     }
 
@@ -49,7 +52,7 @@ int main(int argc, char *argv[]) {
         printf("error creating thread\n");
     }
 
-
+    pthread_cond_signal(&cond);
     res = pthread_join(thread1, NULL);
     if (res != 0) {
         printf("error in join\n");
@@ -63,8 +66,6 @@ int main(int argc, char *argv[]) {
     } else {
         printf("thread picked\n");
     }
-
-
     return 0;
 }
 
@@ -130,12 +131,34 @@ void* thread_func2(void *arg) {
     pthread_testcancel();
 }
 
-
 char *buffer;
 void dangerous_function(void* arg) {
-    buffer = malloc(256);
+
     int add = *(int*)arg;
-    sprintf(buffer, "thread %d wrote",  add);
-    usleep((int)(100000.0 * rand()/RAND_MAX));
-    printf("thread %d reading: %s\n", add, buffer);
+    FILE *file = fopen(fileName, "w+");
+    if(file) {
+        if (fputc((char)add + '0', file) == EOF) {
+            char *errorbuf = strerror(errno);
+            printf("%s\n", errorbuf);
+            return;
+        }
+        fflush(file);
+        printf("thread %d wrote\n",  add);
+        usleep((int)(100000.0 * rand()/RAND_MAX));
+        rewind(file);
+
+        int read;
+
+        if((read = fgetc(file)) != EOF) {
+            printf("thread %d reading: %c\n", add, read);
+        } else {
+            char *errorbuf = strerror(errno);
+            printf("%s\n", errorbuf);
+            return;
+        }
+        fclose(file);
+    } else {
+        printf("error file opening");
+    }
+
 }
