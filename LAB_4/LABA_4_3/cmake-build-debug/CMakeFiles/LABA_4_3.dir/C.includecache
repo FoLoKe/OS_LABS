@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/FoLoKe/CLionProjects/OS_LABS/LAB_4/LABA_4_3/main.c
+stdio.h
+-
+pthread.h
+-
+unistd.h
+-
+stdlib.h
+-
+semaphore.h
+-
+errno.h
+-
+string.h
+-
+
