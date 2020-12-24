@@ -3,6 +3,6 @@ search_wildcards := $(addsuffix /*.c,$(source_dirs))
 laba3_1: $(notdir $(patsubst %.c,%.o,$(wildcard $(search_wildcards))))
 	gcc $^ -o $@
 VPATH := $(source_dirs)
-%.o: %.cpp
+%.o: %.c
 	gcc -c -MD $(addprefix -I ,$(source_dirs)) $<
 include $(wildcard *.d)

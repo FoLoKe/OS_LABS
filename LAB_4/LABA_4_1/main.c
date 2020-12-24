@@ -68,6 +68,7 @@ int main(int argc, char *argv[]) {
 
 void* thread_func1(void *arg) {
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
+    usleep((int)(10000.0 * rand()/RAND_MAX));
     if (sync_type == 1) {
         pthread_mutex_lock(&mutex);
     } else if (sync_type == 2) {
@@ -79,6 +80,7 @@ void* thread_func1(void *arg) {
         }
     }
 
+    printf("1\n");
     dangerous_function(arg);
 
     if (sync_type == 1) {
@@ -98,9 +100,11 @@ void* thread_func1(void *arg) {
 
 void* thread_func2(void *arg) {
     pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
+    usleep((int)(10000.0 * rand()/RAND_MAX));
     if (sync_type == 1) {
         pthread_mutex_lock(&mutex);
     } else if (sync_type == 2) {
+        printf("1\n");
         sem_wait(&semaphore);
     } else if (sync_type == 3) {
         pthread_mutex_lock(&mutex);
@@ -130,6 +134,7 @@ void dangerous_function(void* arg) {
     int add = *(int*)arg;
     for(int i = 0; i<10; i++) {
         number+=add;
+        usleep((int)(10000.0 * rand()/RAND_MAX));
         printf("thread report number: %d\n", number);
     }
 }

@@ -110,7 +110,7 @@ void* thread_func2(void *arg) {
         } else if (sync_type == 3) {
             pthread_mutex_lock(&mutex);
             while (!condition) {
-                pthread_cond_wait(&cond, &mutex);
+                [blt]
             }
         }
 

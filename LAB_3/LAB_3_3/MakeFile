@@ -2,13 +2,13 @@ title := laba3_3
 bin := bin
 source_dirs := src
 search_wildcards := $(addsuffix /*.c,$(source_dirs))
+all: laba3_3 clean
 $(title): $(notdir $(patsubst %.c,%.o,$(wildcard $(search_wildcards))))
 	mkdir -p $(bin)
 	gcc $^ -o $(bin)/$@
 VPATH := $(source_dirs)
-%.o : %.c
+%.o: %.c
 	gcc -c -MD $(addprefix -I ,$(source_dirs)) $<
-include $(wildcard *.d)
-clean $(title):
-	rm *.o
-	rm *.d
+clean:
+	rm -f *.o
+	rm -f *.d

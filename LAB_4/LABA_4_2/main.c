@@ -135,7 +135,7 @@ char *buffer;
 void dangerous_function(void* arg) {
     buffer = malloc(256);
     int add = *(int*)arg;
-    sprintf(buffer, "thread %d wrote",  add);
+    sprintf(buffer, "thread %d wrotelmsd",  add);
     usleep((int)(100000.0 * rand()/RAND_MAX));
     printf("thread %d reading: %s\n", add, buffer);
 }
